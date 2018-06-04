@@ -1,0 +1,57 @@
+\documentclass[runningheads,a4paper]{llncs}
+\usepackage{mathtools}
+\usepackage{graphicx}
+
+
+\begin{document}
+ We are trying to examine whether replacement attack can be captured from schedulability of a system.
+ Initially we tried with considering that scheduling will be lost if one of the participating task automata
+ loses its Buchi property. But this approach could capture only iff the Buchi property is lost. Now we
+ have changed our problem statement to make it more powerful. We are considering FlexRay system to demonstrate
+ our idea.
+ 
+ A FlexRay schedule is organized in a number of communication cycles of same structure. Each FlexRay 
+ communication cycle is consistes of four different segments as:
+ 
+ \begin{itemize}
+  \item A static segment
+  \item A dynamic Segment
+  \item Symbol window
+  \item Network Idle Time  
+ \end{itemize}
+ 
+ We are interested only in Static segments, time triggered static segment used
+ for scheduling.  Static slots consists of fixed number of slots of 
+ equal size. 
+ 
+ \begin{itemize}
+\item Number of communication cycle $n$
+\item The cycle duration $t_c$
+\item Number of available static slots in one cycle $n$
+\item Message size $l_m$ and takes period $p_m$
+\item Message repetition $r_m = (p_m/t_c)$
+\item Message $m$ is scheduled in the first cycle called Base cycle $b_m$
+\item A Message $m$ is scheduled in a cycle $cc_i$ when $i = (b_m + r_m \cdot a) \mod k, a \epsilon {\mathbb{N}_0}$
+\item {If $\forall i,j \epsilon {\mathbb{N}_0} : (b_{m_1} + r_{m_1}\cdot i) \mod k \neq (b_{m_2} + r_{m_2}\cdot j) \mod k$ 
+then $m_1$ and $m_2$ will not intersect
+      
+\end{itemize} 
+
+ The aim is to avoid cycle conflict so that slot conflict can be avoided at the same time. In this system slot conflict
+ arise if two messages tries to access the same cycle and same slot number. If no cycle conflict can be ensured then there will be no
+ slot conflict.
+ 
+ 
+ Our Planning 
+FlexRay parameters shows that whether two messages will intersect or not
+depends on the base cycle and number of repetitions. So our idea is:
+\begin{itemize}
+\item Initially system has defined static scheduling sequence
+\item That sequence says the base cycle and the number of repetitions of each messages
+\item Now if a message misses its allocated cycle due to delay and tries to access another cycle which is 
+      not granted for it, then a situation of conflict will arise
+\item We are trying to get a scheduler B\"{u}chi automata, that can capture the conflict
+       
+\end{itemize}
+
+\end{document}

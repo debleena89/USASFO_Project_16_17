@@ -1,0 +1,7 @@
+PAPARAZZI_DIR = \"$(BASE)/\"
+ATMELBIN = /usr/bin
+ATMEL_INCLUDES = -I $(BASE)/avr/include/
+UISPBIN=/usr/bin
+PROG_PORT = /dev/parport0
+USB_PROG_PORT = /dev/ttyUSB1
+# WITH_RTTY=1 # If you want to support the telemetry through the audio input
